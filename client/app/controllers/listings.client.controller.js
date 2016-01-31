@@ -15,7 +15,7 @@ angular.module('listings').controller('ListingsController', ['$scope', '$locatio
     };
 
     $scope.findOne = function() {
-      debugger;
+      //debugger;
       $scope.loading = true;
 
       /*
@@ -79,6 +79,23 @@ angular.module('listings').controller('ListingsController', ['$scope', '$locatio
         successfully finished, navigate back to the 'listing.list' state using $state.go(). If an error 
         occurs, pass it to $scope.error. 
        */
+       $scope.error = null;
+
+      /* 
+        Check that the form is valid. (https://github.com/paulyoder/angular-bootstrap-show-errors)
+       */
+      if (!isValid) {
+        $scope.$broadcast('show-errors-check-validity', 'articleForm');
+
+        return false;
+      }
+      
+      Listings.update($stateParams.listingId, $scope.listing).then(function(response) {
+        $state.go('listings.list', { successMessage: 'Listing successfully updated!' });
+      }, function(error) {
+        $scope.error = 'Unable to update the listing!\n' + error;
+      });
+
     };
 
     $scope.remove = function() {
