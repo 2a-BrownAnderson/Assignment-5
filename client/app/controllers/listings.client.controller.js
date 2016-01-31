@@ -89,7 +89,7 @@ angular.module('listings').controller('ListingsController', ['$scope', '$locatio
 
         return false;
       }
-      
+
       Listings.update($stateParams.listingId, $scope.listing).then(function(response) {
         $state.go('listings.list', { successMessage: 'Listing successfully updated!' });
       }, function(error) {
@@ -103,6 +103,12 @@ angular.module('listings').controller('ListingsController', ['$scope', '$locatio
         Implement the remove function. If the removal is successful, navigate back to 'listing.list'. Otherwise, 
         display the error. 
        */
+       $scope.error = null;
+       Listings.delete($stateParams.listingId).then(function(response) {
+        $state.go('listings.list', { successMessage: 'Listing successfully removed!' });
+      }, function(error) {
+        $scope.error = 'Unable to update the listing!\n' + error;
+      });
     };
 
     /* Bind the success message to the scope if it exists as part of the current state */
