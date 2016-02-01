@@ -125,11 +125,12 @@ angular.module('listings').controller('ListingsController', ['$scope', '$locatio
       }, 
       zoom: 14
     }
-
+    /*
     $scope.onClick = function(marker, eventName, model) {
             console.log("Clicked!");
             model.show = !model.show;
     };
+    */
 
   }
 ]);
