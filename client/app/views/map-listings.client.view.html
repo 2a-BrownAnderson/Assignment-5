@@ -9,4 +9,8 @@
     https://angular-ui.github.io/angular-google-maps/#!/api/windows
   -->
 
-<h1>MAP</h1>
+<div class="angular-google-map-container" ng-controller="ListingsController">
+	<ui-gmap-google-map center="map.center" zoom="map.zoom" options="options">
+		<ui-gmap-markers models="listings" coords="'coordinates'" icon="'icon'"></ui-gmap-markers>
+	</ui-gmap-google-map>
+</div>
